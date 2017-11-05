@@ -1,0 +1,197 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+body{
+  font-family: 'Nunito', sans-serif;
+  height: 100%;
+}
+
+#profs{
+  font-size: 30px;
+  margin: 0 10px 5px 10px;
+  text-align: center;
+  margin: auto;
+  padding: 20px;
+  background-color: #255C69;
+  color: white;
+}
+
+#profs select {
+  display: table;
+  margin: auto;
+  margin-top: 5px;
+  width: 20%;
+  font-size: 20px;
+}
+
+#profs option {
+  text-align: center;
+}
+
+#wrapper{
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  background-color: #447884;
+  display: table;
+}
+
+.left{
+  float: left;
+  box-sizing: border-box;
+  padding: 10px;
+  width: 50%;
+  display: table;
+}
+
+.right{
+  float: right;
+  width: 50%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.vtable{
+  padding: 5px;
+  width: 100%;
+  background-color: #6B949E;
+  table-layout: fixed;
+}
+
+#alleVeranstaltungen{
+
+}
+
+#veranstaltungen{
+
+}
+
+#alleVeranstaltungen , #veranstaltungen{
+  max-height: 400px;
+  overflow-y: scroll;
+  direction: rtl;
+  margin: 0px;
+  padding: 0px;
+  margin-top: 20px;
+}
+
+#alleVeranstaltungen table, #veranstaltungen table{
+  direction: ltr;
+  font-size: 15px;
+  float: left;
+}
+
+#alleVeranstaltungen table td, #veranstaltungen table td{
+  border-bottom: solid #003333 1px;
+  padding: 5px 0px;
+}
+
+#alleVeranstaltungen, #veranstaltungen{
+  float: left;
+}
+
+#alleVeranstaltungen::-webkit-scrollbar-track , #veranstaltungen::-webkit-scrollbar-track{
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #F5F5F5;
+}
+
+#alleVeranstaltungen::-webkit-scrollbar , #veranstaltungen::-webkit-scrollbar{
+  width: 6px;
+	background-color: #AA6C39;
+}
+
+#alleVeranstaltungen::-webkit-scrollbar-thumb , #veranstaltungen::-webkit-scrollbar-thumb{
+  background-color: #D46A6A;
+}
+
+
+
+.button{
+  background-color: white;
+  border: 0px;
+}
+
+.test{
+  background-color: red;
+  width: 50%;
+}
+
+.test fach{
+  width: auto;
+  display: table-cell;
+}
+
+.icon{
+  display: table-cell;
+}
+
+/* Style the tab */
+div.tab {
+    overflow: hidden;
+}
+
+/* Style the buttons inside the tab */
+div.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    background-color: #f1f1f1;
+}
+
+/* Change background color of buttons on hover */
+div.tab button:hover {
+    background-color: #D47A6A;
+    color: white;
+}
+
+/* Create an active/current tablink class */
+div.tab button.active {
+  background-color: #D47A6A;
+  color: white;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border-top: none;
+}
+
+.tabcontent {
+    -webkit-animation: fadeEffect 1s;
+    animation: fadeEffect 1s; /* Fading effect takes 1 second */
+}
+
+@-webkit-keyframes fadeEffect {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes fadeEffect {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+#vsuche[type=text] {
+  width: 130px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: white;
+  background-image: url('searchicon.png');
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  padding: 12px 20px 12px 40px;
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
+}
+
+/* When the input field gets focus, change its width to 100% */
+#vsuche[type=text]:focus {
+    width: 50%;
+}
