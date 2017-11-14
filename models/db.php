@@ -131,5 +131,36 @@ class Database
       return json_encode($rows);
     }
   }
+
+  function getVeranstaltungenWithUeberschneidung($pid){
+    $conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
+    $conn->set_charset("utf8");
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    $sql = "SELECT * from veranstaltung
+    inner JOIN zuordnung_dozent_veranstaltung
+    on zuordnung_dozent_veranstaltung.IDVERANSTALTUNG = veranstaltung.IDVERANSTALTUNG
+    group by zuordnung_dozent_veranstaltung.IDVERANSTALTUNG
+    having COUNT(zuordnung_dozent_veranstaltung.IDVERANSTALTUNG) > 1
+    AND zuordnung_dozent_veranstaltung.IDDOZENT = $pid";
+
+    $result = $conn->query($sql);
+
+    if($result->num_rows === 0)
+    {
+        echo '{"BEZEICHNUNG":"Keine Veranstaltungen"}';
+    }
+
+    else{
+      while($row = $result->fetch_assoc()) {
+        $rows[] = $row;
+      }
+      $result->free();
+      $conn->close();
+      return json_encode($rows);
+    }
+  }
 }
 ?>
