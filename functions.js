@@ -5,15 +5,15 @@ function getAllDozenten(arr){
   }
 }
 
-//Sendet alle Dozenten als HTML Select Feld zurück
+//Sendet alle Dozenten als HTML Select Feld zurück und ruft update() auf, wenn sich der Professor ändert.
 function listAllDozent(arr){
   var str = "";
-  str += '<label>Dozent(in):</br><select onChange="update()" id="selectDozent" name="top5"><option selected disabled hidden>Prof auswählen</option>';
+  str += '<label>Dozent(in):</br></label><select onChange="update()" id="selectDozent" name="top5"><option selected disabled hidden>Prof auswählen</option>';
   for(var i = 0; i < arr.length; i++){
     var obj = arr[i];
     str += '<option value="'+ obj.IDDOZENT + '">' + obj.NAME + '</option>';
   }
-  str += '</select></label>';
+  str += '</select>';
   return str;
 }
 
