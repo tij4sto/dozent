@@ -177,7 +177,7 @@ div.tab button.active {
 }
 
 #vsuche[type=text] {
-  width: 130px;
+  width: 25%;
   box-sizing: border-box;
   border: 2px solid #ccc;
   border-radius: 4px;
@@ -186,12 +186,12 @@ div.tab button.active {
   background-image: url('searchicon.png');
   background-position: 10px 10px;
   background-repeat: no-repeat;
-  padding: 12px 20px 12px 40px;
+  padding: 5px;
   -webkit-transition: width 0.4s ease-in-out;
   transition: width 0.4s ease-in-out;
 }
 
 /* When the input field gets focus, change its width to 100% */
 #vsuche[type=text]:focus {
-    width: 50%;
+    width: 100%;
 }
