@@ -40,7 +40,9 @@ function listFilteredVeranstaltung(arr, zustand){
     for(var i = 0; i < arr.length; i++){
       var obj = arr[i];
       if(obj.SOMMER == 1){
-        str += '<tr><td class="vtd" id="v'+ obj.IDVERANSTALTUNG + '">' + obj.BEZEICHNUNG + '</td><td style="border: none"><button onClick="" class="button"><i class="icon fa fa-bars"></i></button><button onClick=deleteVeranstaltung(\'' + obj.IDVERANSTALTUNG + '\') class="button"><i class="icon fa fa-close"></i></button></td></tr>';
+        str += '<tr><td class="vtd" id="v'+ obj.IDVERANSTALTUNG + '">' + obj.BEZEICHNUNG
+        + '</td><td style="border: none"><button onClick="" class="button"><i class="icon fa fa-bars"></i></button><button onClick=deleteVeranstaltung(\''
+        + obj.IDVERANSTALTUNG + '\') class="button"><i class="icon fa fa-close"></i></button></td></tr>';
       }
     }
   }
@@ -50,7 +52,9 @@ function listFilteredVeranstaltung(arr, zustand){
     for(var i = 0; i < arr.length; i++){
       var obj = arr[i];
       if(obj.HAEUFIGKEIT_PA == 2 || obj.SOMMER == 0){
-        str += '<tr><td class="vtd" id="v'+ obj.IDVERANSTALTUNG + '">' + obj.BEZEICHNUNG + '</td><td style="border: none"><button onClick=deleteVeranstaltung(\'' + obj.IDVERANSTALTUNG + '\') class="button"><i class="icon fa fa-close"></i></button></td></tr>';
+        str += '<tr><td class="vtd" id="v'+ obj.IDVERANSTALTUNG + '">' + obj.BEZEICHNUNG
+        + '</td><td style="border: none"><button onClick=deleteVeranstaltung(\'' + obj.IDVERANSTALTUNG
+        + '\') class="button"><i class="icon fa fa-close"></i></button></td></tr>';
       }
     }
   }
@@ -59,7 +63,9 @@ function listFilteredVeranstaltung(arr, zustand){
     i++;
     for(var i = 0; i < arr.length; i++){
       var obj = arr[i];
-        str += '<tr><td class="vtd" id="v'+ obj.IDVERANSTALTUNG + '">' + obj.BEZEICHNUNG + '</td><td style="border: none"><button onClick=deleteVeranstaltung(\'' + obj.IDVERANSTALTUNG + '\') class="button"><i class="icon fa fa-close"></i></button></td></tr>';
+        str += '<tr><td class="vtd" id="v'+ obj.IDVERANSTALTUNG + '">' + obj.BEZEICHNUNG
+        + '</td><td style="border: none"><button onClick=deleteVeranstaltung(\'' + obj.IDVERANSTALTUNG
+        + '\') class="button"><i class="icon fa fa-close"></i></button></td></tr>';
       }
   }
 
