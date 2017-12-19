@@ -11,7 +11,7 @@ body{
   text-align: center;
   margin: auto;
   padding: 20px;
-  background-color: #255C69;
+  background-color: #D46A6A;
   color: white;
 }
 
@@ -32,7 +32,7 @@ body{
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
-  background-color: #447884;
+  background-color: white;
   display: table;
 }
 
@@ -54,7 +54,7 @@ body{
 .vtable{
   padding: 5px;
   width: 100%;
-  background-color: #6B949E;
+  background-color: white;
   table-layout: fixed;
 }
 
@@ -125,12 +125,10 @@ body{
   display: table-cell;
 }
 
-/* Style the tab */
 div.tab {
     overflow: hidden;
 }
 
-/* Style the buttons inside the tab */
 div.tab button {
     background-color: inherit;
     float: left;
@@ -142,19 +140,16 @@ div.tab button {
     background-color: #f1f1f1;
 }
 
-/* Change background color of buttons on hover */
 div.tab button:hover {
     background-color: #D47A6A;
     color: white;
 }
 
-/* Create an active/current tablink class */
 div.tab button.active {
   background-color: #D47A6A;
   color: white;
 }
 
-/* Style the tab content */
 .tabcontent {
     display: none;
     padding: 6px 12px;

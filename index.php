@@ -30,10 +30,12 @@
         </div>
         <div class="tab">
           <button class="tablinks" onclick="openVList(event, 'veranstaltungen')">Veranstaltungen SoSe</button>
-          <button class="tablinks" onclick="openVList(event, 'veranstaltungen')">Veranstaltungen WiSe</button>
-          <button class="tablinks" onclick="openVList(event, 'veranstaltungen')">Überschneidungen mit Kollegen</button>
+          <button class="tablinks" onclick="openVList(event, 'veranstaltungen-winter')">Veranstaltungen WiSe</button>
+          <button class="tablinks" onclick="openVList(event, 'veranstaltungen-ueberschneidungen')">Überschneidungen mit Kollegen</button>
         </div>
         <div id="veranstaltungen" class="tabcontent"></div>
+        <div id="veranstaltungen-winter" class="tabcontent"></div>
+        <div id="veranstaltungen-ueberschneidungen" class="tabcontent"></div>
       </div>
     </div>
     <script>
