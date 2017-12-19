@@ -33,12 +33,9 @@ function listAllVeranstaltung(arr){
 
 //Sendet alle Veranstaltungen als Table zurück, in die der ausgewählte Professor eingetragen ist
 function listFilteredVeranstaltung(arr, zustand){
-  var i = 0;
-  console.log(zustand);
   var str = "";
   str += '<table class="vtable">';
   if(zustand == 'sommer'){
-    i++;
     for(var i = 0; i < arr.length; i++){
       var obj = arr[i];
       if(obj.SOMMER == 1){
@@ -51,7 +48,6 @@ function listFilteredVeranstaltung(arr, zustand){
   }
 
   if(zustand == 'winter'){
-    i++;
     for(var i = 0; i < arr.length; i++){
       var obj = arr[i];
       if(obj.HAEUFIGKEIT_PA == 2 || obj.SOMMER == 0){
@@ -63,8 +59,22 @@ function listFilteredVeranstaltung(arr, zustand){
     }
   }
 
+  if(zustand == 'ueberschneidungen'){
+    var t = "null"
+    for(var i = 0; i < arr.length; i++){
+      var obj = arr[i];
+      if(t != "null"){
+        if(obj.BEZEICHNUNG != t){
+          str += '<tr><td colspan="3" style="width:100%"><hr style="border: solid #44729A 2px"></td></tr>';
+        }
+      }
+      str += '<tr><td class="vtd" id="v'+ obj.BEZEICHNUNG + '">' + obj.BEZEICHNUNG
+      + '</td><td style="text-align: center">'+ obj.NAME +'</td><td style="text-align: right">' + obj.ANTEIL_PROZENT +'</td></tr>';
+      t = obj.BEZEICHNUNG;
+    }
+  }
+
   if(zustand == 'alle'){
-    i++;
     for(var i = 0; i < arr.length; i++){
       var obj = arr[i];
         str += '<tr><td class="vtd" id="v'+ obj.IDVERANSTALTUNG + '">' + obj.BEZEICHNUNG
@@ -76,7 +86,6 @@ function listFilteredVeranstaltung(arr, zustand){
 
   str += '</table>';
   zustand = "";
-  console.log(i);
   return str;
 }
 
@@ -87,14 +96,23 @@ function update(){
   var xmlhttp = new XMLHttpRequest();
   xmlhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-              console.log(this.responseText)
               document.getElementById('veranstaltungen').innerHTML = listFilteredVeranstaltung(JSON.parse(this.responseText), 'alle');
               document.getElementById('veranstaltungen-sommer').innerHTML = listFilteredVeranstaltung(JSON.parse(this.responseText), 'sommer');
               document.getElementById('veranstaltungen-winter').innerHTML = listFilteredVeranstaltung(JSON.parse(this.responseText), 'winter');
-            }
+            };
         };
   xmlhttp.open("GET", "profSelected.php?id=" + data, true);
   xmlhttp.send();
+
+
+  var xmlhttp2 = new XMLHttpRequest();
+  xmlhttp2.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+              document.getElementById('veranstaltungen-ueberschneidungen').innerHTML = listFilteredVeranstaltung(JSON.parse(this.responseText), 'ueberschneidungen');
+            };
+  };
+  xmlhttp2.open("GET", "getUeberschneidungen.php?id=" + data, true);
+  xmlhttp2.send();
 }
 
 //Wird gecallt, wenn innerhalb der Suche nach einer Veranstaltung gesucht wird. Verändert die verfügbare Tabelle der Veranstaltungen

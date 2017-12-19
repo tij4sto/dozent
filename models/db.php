@@ -132,19 +132,21 @@ class Database
     }
   }
 
-  function getVeranstaltungenWithUeberschneidung($pid){
+  function getUeberschneidungenById($pid){
     $conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
     $conn->set_charset("utf8");
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    $sql = "SELECT * from veranstaltung
-    inner JOIN zuordnung_dozent_veranstaltung
-    on zuordnung_dozent_veranstaltung.IDVERANSTALTUNG = veranstaltung.IDVERANSTALTUNG
-    group by zuordnung_dozent_veranstaltung.IDVERANSTALTUNG
-    having COUNT(zuordnung_dozent_veranstaltung.IDVERANSTALTUNG) > 1
-    AND zuordnung_dozent_veranstaltung.IDDOZENT = $pid";
+    $sql = "SELECT BEZEICHNUNG, NAME, ANTEIL_PROZENT FROM `zuordnung_dozent_veranstaltung`
+            INNER JOIN `veranstaltung` ON zuordnung_dozent_veranstaltung.IDVERANSTALTUNG = veranstaltung.IDVERANSTALTUNG INNER JOIN `dozent` ON zuordnung_dozent_veranstaltung.IDDOZENT = dozent.IDDOZENT
+            WHERE zuordnung_dozent_veranstaltung.IDVERANSTALTUNG IN(
+              SELECT IDVERANSTALTUNG FROM (
+                SELECT IDVERANSTALTUNG, SUM(ANTEIL_PROZENT) AS 'anteilSumme' FROM `zuordnung_dozent_veranstaltung` WHERE zuordnung_dozent_veranstaltung.IDVERANSTALTUNG IN (
+                SELECT zuordnung_dozent_veranstaltung.IDVERANSTALTUNG FROM `zuordnung_dozent_veranstaltung` WHERE IDDOZENT = $pid
+              )  GROUP BY zuordnung_dozent_veranstaltung.IDVERANSTALTUNG
+                ) t WHERE anteilSumme > 1)";
 
     $result = $conn->query($sql);
 

@@ -3,7 +3,7 @@
     require 'models/db.php';
     $db = new Database();
     $selected = $_GET['id'];
-    $veranstaltungenByID = $db->getVeranstaltungenWithUeberschneidung($selected);
+    $veranstaltungenByID = $db->getUeberschneidungenById($selected);
     echo $veranstaltungenByID;
   }
 ?>

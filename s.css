@@ -11,7 +11,7 @@ body{
   text-align: center;
   margin: auto;
   padding: 20px;
-  background-color: #D46A6A;
+  background-color: #44729A;
   color: white;
 }
 
@@ -101,7 +101,7 @@ body{
 }
 
 #alleVeranstaltungen::-webkit-scrollbar-thumb , #veranstaltungen::-webkit-scrollbar-thumb{
-  background-color: #D46A6A;
+  background-color: #44729A;
 }
 
 
@@ -127,6 +127,7 @@ body{
 
 div.tab {
     overflow: hidden;
+    width: 100%;
 }
 
 div.tab button {
@@ -138,15 +139,16 @@ div.tab button {
     padding: 14px 16px;
     transition: 0.3s;
     background-color: #f1f1f1;
+    width: 25%;
 }
 
 div.tab button:hover {
-    background-color: #D47A6A;
+    background-color: #44729A;
     color: white;
 }
 
 div.tab button.active {
-  background-color: #D47A6A;
+  background-color: #95b4d0;
   color: white;
 }
 
@@ -188,7 +190,7 @@ div.tab button.active {
 
 /* When the input field gets focus, change its width to 100% */
 #vsuche[type=text]:focus {
-    width: 100%;
+    width: 50%;
 }
 
 /* The Modal (background) */
