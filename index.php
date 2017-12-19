@@ -38,6 +38,9 @@
         <div id="veranstaltungen-sommer" class="tabcontent"></div>
         <div id="veranstaltungen-winter" class="tabcontent"></div>
         <div id="veranstaltungen-ueberschneidungen" class="tabcontent"></div>
+
+        <!-- Modal -->
+        <div id="myModal" class="modal"></div>
       </div>
     </div>
     <script>

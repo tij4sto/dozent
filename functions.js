@@ -23,7 +23,9 @@ function listAllVeranstaltung(arr){
   str += '<table class="vtable"></tr>';
   for(var i = 0; i < arr.length; i++){
     var obj = arr[i];
-    str += '<tr><td value="'+ obj.BEZEICHNUNG + '">' + obj.BEZEICHNUNG + '</td><td style="border: none; padding-left: 5px;"><button onClick=updateVeranstaltung(\'' + obj.IDVERANSTALTUNG + '\') id="'+ obj.IDVERANSTALTUNG +'" class="button"><i class="icon fa fa-arrow-right"></i></button></td></tr>';
+    str += '<tr><td value="'+ obj.BEZEICHNUNG + '">' + obj.BEZEICHNUNG
+    + '</td><td style="border: none; padding-left: 5px;"><button onClick=updateVeranstaltung(\''
+    + obj.IDVERANSTALTUNG + '\') id="'+ obj.IDVERANSTALTUNG +'" class="button"><i class="icon fa fa-arrow-right"></i></button></td></tr>';
   }
   str += '</table>';
   return str;
@@ -41,7 +43,8 @@ function listFilteredVeranstaltung(arr, zustand){
       var obj = arr[i];
       if(obj.SOMMER == 1){
         str += '<tr><td class="vtd" id="v'+ obj.IDVERANSTALTUNG + '">' + obj.BEZEICHNUNG
-        + '</td><td style="border: none"><button onClick="" class="button"><i class="icon fa fa-bars"></i></button><button onClick=deleteVeranstaltung(\''
+        + '</td><td style="border: none"><button onClick=editVeranstaltung(\''
+        + obj.IDVERANSTALTUNG + '\') class="button"><i class="icon fa fa-bars"></i></button><button onClick=deleteVeranstaltung(\''
         + obj.IDVERANSTALTUNG + '\') class="button"><i class="icon fa fa-close"></i></button></td></tr>';
       }
     }
@@ -53,7 +56,8 @@ function listFilteredVeranstaltung(arr, zustand){
       var obj = arr[i];
       if(obj.HAEUFIGKEIT_PA == 2 || obj.SOMMER == 0){
         str += '<tr><td class="vtd" id="v'+ obj.IDVERANSTALTUNG + '">' + obj.BEZEICHNUNG
-        + '</td><td style="border: none"><button onClick=deleteVeranstaltung(\'' + obj.IDVERANSTALTUNG
+        + '</td><td style="border: none"><button onClick=editVeranstaltung(\''
+        + obj.IDVERANSTALTUNG + '\') class="button"><i class="icon fa fa-bars"></i></button><button onClick=deleteVeranstaltung(\'' + obj.IDVERANSTALTUNG
         + '\') class="button"><i class="icon fa fa-close"></i></button></td></tr>';
       }
     }
@@ -64,7 +68,8 @@ function listFilteredVeranstaltung(arr, zustand){
     for(var i = 0; i < arr.length; i++){
       var obj = arr[i];
         str += '<tr><td class="vtd" id="v'+ obj.IDVERANSTALTUNG + '">' + obj.BEZEICHNUNG
-        + '</td><td style="border: none"><button onClick=deleteVeranstaltung(\'' + obj.IDVERANSTALTUNG
+        + '</td><td style="border: none"><button onClick=editVeranstaltung(\''
+        + obj.IDVERANSTALTUNG + '\') class="button"><i class="icon fa fa-bars"></i></button><button onClick=deleteVeranstaltung(\'' + obj.IDVERANSTALTUNG
         + '\') class="button"><i class="icon fa fa-close"></i></button></td></tr>';
       }
   }
@@ -134,6 +139,31 @@ function deleteVeranstaltung(str){
         };
   xmlhttp.open("GET", "deleteVeranstaltung.php?vid=" + str + "&pid=" + data, true);
   xmlhttp.send();
+}
+
+function editVeranstaltung(vid){
+  var modal = document.getElementById("myModal");
+  modal.innerHTML = createInnerHTMLForModal(vid);
+  modal.style.display = "inline";
+}
+
+function createInnerHTMLForModal(vid){
+  var str = '<!-- Modal content --><div class="modal-content"><span onClick="hideModal()" class="close">&times;</span><h3>Anteil ändern</h3>';
+  str += 'Neuer Anteil für SWS für die Veranstaltung: </br><input id="sws" class="modal-input" type="number" name="anteil"><button style="background-color:#9fdf9f" onclick="saveEdit(\''
+  + vid + '\')" class="modal-btn">Speichern</button>';
+  str += '<button class="modal-btn" onclick="hideModal()">Abbrechen</button>';
+  str += '</div>';
+  return str;
+}
+
+function saveEdit(vid){
+  console.log(document.getElementById('sws').value);
+  hideModal();
+}
+
+function hideModal(){
+  var modal = document.getElementById("myModal");
+  modal.style.display = "none";
 }
 
 //Wird aufgerufen, wenn die verschiedenen Listen auf der rechten Seite angezeigt werden sollen.
