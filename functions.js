@@ -31,18 +31,22 @@ function listAllVeranstaltung(arr){
 
 //Sendet alle Veranstaltungen als Table zurück, in die der ausgewählte Professor eingetragen ist
 function listFilteredVeranstaltung(arr, zustand){
+  var i = 0;
+  console.log(zustand);
   var str = "";
   str += '<table class="vtable">';
   if(zustand == 'sommer'){
+    i++;
     for(var i = 0; i < arr.length; i++){
       var obj = arr[i];
       if(obj.SOMMER == 1){
-        str += '<tr><td class="vtd" id="v'+ obj.IDVERANSTALTUNG + '">' + obj.BEZEICHNUNG + '</td><td style="border: none"><button onClick=deleteVeranstaltung(\'' + obj.IDVERANSTALTUNG + '\') class="button"><i class="icon fa fa-close"></i></button></td></tr>';
+        str += '<tr><td class="vtd" id="v'+ obj.IDVERANSTALTUNG + '">' + obj.BEZEICHNUNG + '</td><td style="border: none"><button onClick="" class="button"><i class="icon fa fa-bars"></i></button><button onClick=deleteVeranstaltung(\'' + obj.IDVERANSTALTUNG + '\') class="button"><i class="icon fa fa-close"></i></button></td></tr>';
       }
     }
   }
 
   if(zustand == 'winter'){
+    i++;
     for(var i = 0; i < arr.length; i++){
       var obj = arr[i];
       if(obj.HAEUFIGKEIT_PA == 2 || obj.SOMMER == 0){
@@ -51,7 +55,17 @@ function listFilteredVeranstaltung(arr, zustand){
     }
   }
 
+  if(zustand == 'alle'){
+    i++;
+    for(var i = 0; i < arr.length; i++){
+      var obj = arr[i];
+        str += '<tr><td class="vtd" id="v'+ obj.IDVERANSTALTUNG + '">' + obj.BEZEICHNUNG + '</td><td style="border: none"><button onClick=deleteVeranstaltung(\'' + obj.IDVERANSTALTUNG + '\') class="button"><i class="icon fa fa-close"></i></button></td></tr>';
+      }
+  }
+
   str += '</table>';
+  zustand = "";
+  console.log(i);
   return str;
 }
 
@@ -63,7 +77,8 @@ function update(){
   xmlhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
               console.log(this.responseText)
-              document.getElementById('veranstaltungen').innerHTML = listFilteredVeranstaltung(JSON.parse(this.responseText), 'sommer');
+              document.getElementById('veranstaltungen').innerHTML = listFilteredVeranstaltung(JSON.parse(this.responseText), 'alle');
+              document.getElementById('veranstaltungen-sommer').innerHTML = listFilteredVeranstaltung(JSON.parse(this.responseText), 'sommer');
               document.getElementById('veranstaltungen-winter').innerHTML = listFilteredVeranstaltung(JSON.parse(this.responseText), 'winter');
             }
         };

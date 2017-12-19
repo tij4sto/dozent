@@ -29,11 +29,13 @@
           <h1>Veranstaltungen</h1>
         </div>
         <div class="tab">
-          <button class="tablinks" onclick="openVList(event, 'veranstaltungen')">Veranstaltungen SoSe</button>
+          <button class="tablinks" onclick="openVList(event, 'veranstaltungen')">Alle Veranstaltungen</button>
+          <button class="tablinks" onclick="openVList(event, 'veranstaltungen-sommer')">Veranstaltungen SoSe</button>
           <button class="tablinks" onclick="openVList(event, 'veranstaltungen-winter')">Veranstaltungen WiSe</button>
-          <button class="tablinks" onclick="openVList(event, 'veranstaltungen-ueberschneidungen')">Überschneidungen mit Kollegen</button>
+          <button class="tablinks" onclick="openVList(event, 'veranstaltungen-ueberschneidungen')">Überschneidungen</button>
         </div>
         <div id="veranstaltungen" class="tabcontent"></div>
+        <div id="veranstaltungen-sommer" class="tabcontent"></div>
         <div id="veranstaltungen-winter" class="tabcontent"></div>
         <div id="veranstaltungen-ueberschneidungen" class="tabcontent"></div>
       </div>
