@@ -167,7 +167,7 @@ function editVeranstaltung(vid){
 
 function createInnerHTMLForModal(vid){
   var str = '<!-- Modal content --><div class="modal-content"><span onClick="hideModal()" class="close">&times;</span><h3>Anteil ändern</h3>';
-  str += 'Neuer Anteil für SWS für die Veranstaltung: </br><input id="sws" class="modal-input" type="number" name="anteil"><button style="background-color:#9fdf9f" onclick="saveEdit(\''
+  str += 'Neuer Anteil für SWS für die Veranstaltung: </br><input id="sws" class="modal-input" type="number" name="anteil"></br><p id="hinweis"></p><button style="background-color:#9fdf9f" onclick="saveEdit(\''
   + vid + '\')" class="modal-btn">Speichern</button>';
   str += '<button class="modal-btn" onclick="hideModal()">Abbrechen</button>';
   str += '</div>';
@@ -176,7 +176,34 @@ function createInnerHTMLForModal(vid){
 
 function saveEdit(vid){
   console.log(document.getElementById('sws').value);
-  hideModal();
+  var yourSelectDozent = document.getElementById( "selectDozent" );
+  var prof = yourSelectDozent.options[yourSelectDozent.selectedIndex].value;
+  var v = vid;
+  var sws = document.getElementById('sws').value;
+
+  if(sws >= 0){
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+              if (this.readyState == 4 && this.status == 200) {
+                console.log(this.responseText);
+                if(this.responseText == "1"){
+                  hideModal();
+                }
+                
+                else{
+                  document.getElementById('hinweis').style.display = 'block';
+                  document.getElementById('hinweis').innerHTML = this.responseText;
+                }
+              }
+          };
+    xmlhttp.open("GET", "editSwsInVeranstaltung.php?vid=" + v + "&pid=" + prof + "&sws=" + sws , true);
+    xmlhttp.send();
+  }
+
+  else{
+    document.getElementById('hinweis').style.display = 'block';
+    document.getElementById('hinweis').innerHTML = "Es sind nur positive Werte als Eingabe erlaubt.";
+  }
 }
 
 function hideModal(){

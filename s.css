@@ -207,6 +207,12 @@ div.tab button.active {
     background-color: rgba(113,156,193,0.8); /* Black w/ opacity */
 }
 
+#hinweis{
+  display: none;
+  font-weight: 12px;
+  color: red;
+}
+
 /* Modal Content/Box */
 .modal-content {
     background-color: #fefefe;
