@@ -8,10 +8,10 @@ function getAllDozenten(arr){
 //Sendet alle Dozenten als HTML Select Feld zurück und ruft update() auf, wenn sich der Professor ändert.
 function listAllDozent(arr){
   var str = "";
-  str += '<label>Dozent(in):</br></label><select onChange="update()" id="selectDozent" name="top5"><option selected disabled hidden>Prof auswählen</option>';
+  str += '<label>Dozent(in):</br></label><select onChange="update()" id="selectDozent" class="profselect" name="top5"><option selected disabled hidden>Prof auswählen</option>';
   for(var i = 0; i < arr.length; i++){
     var obj = arr[i];
-    str += '<option value="'+ obj.IDDOZENT + '">' + obj.NAME + '</option>';
+    str += '<option class="profoption" value="'+ obj.IDDOZENT + '">' + obj.NAME + '</option>';
   }
   str += '</select>';
   return str;
@@ -20,11 +20,12 @@ function listAllDozent(arr){
 //Sendet alle verfügbaren Veranstaltungen zurück und fügt sie als Table in DIV ein.
 function listAllVeranstaltung(arr){
   var str = "";
-  str += '<table class="vtable"></tr>';
+  str += '<div class="veranstaltungen"><table class="vtable"></tr>';
+  str += '<tr><th class="thBez">Bezeichnung</th><th class="thSWS">SWS</th></tr>'
   for(var i = 0; i < arr.length; i++){
     var obj = arr[i];
-    str += '<tr><td value="'+ obj.BEZEICHNUNG + '">' + obj.BEZEICHNUNG
-    + '</td><td style="border: none; padding-left: 5px;"><button onClick=updateVeranstaltung(\''
+    str += '<tr><td class="tdAlle" value="'+ obj.BEZEICHNUNG + '">' + obj.BEZEICHNUNG
+    + '</td><td class="tdSWS">'+obj.SWS+'</td><td class="tdPfeil" style="border: none; padding-left: 5px;"><button onClick=updateVeranstaltung(\''
     + obj.IDVERANSTALTUNG + '\') id="'+ obj.IDVERANSTALTUNG +'" class="button"><i class="icon fa fa-arrow-right"></i></button></td></tr>';
   }
   str += '</table>';
@@ -34,13 +35,13 @@ function listAllVeranstaltung(arr){
 //Sendet alle Veranstaltungen als Table zurück, in die der ausgewählte Professor eingetragen ist
 function listFilteredVeranstaltung(arr, zustand){
   var str = "";
-  str += '<table class="vtable">';
+  str += '<div class="veranstaltungen"><table class="vtable">';
   if(zustand == 'sommer'){
     for(var i = 0; i < arr.length; i++){
       var obj = arr[i];
       if(obj.SOMMER == 1){
-        str += '<tr><td class="vtd" id="v'+ obj.IDVERANSTALTUNG + '">' + obj.BEZEICHNUNG
-        + '</td><td style="border: none"><button onClick=editVeranstaltung(\''
+        str += '<tr><td class="tdBezeichnung" id="v'+ obj.IDVERANSTALTUNG + '">' + obj.BEZEICHNUNG
+        + '</td><td class="tdAnteil">'+obj.ANTEIL_PROZENT+'</td><td class="tdButtons" style="border: none"><button onClick=editVeranstaltung(\''
         + obj.IDVERANSTALTUNG + '\') class="button"><i class="icon fa fa-bars"></i></button><button onClick=deleteVeranstaltung(\''
         + obj.IDVERANSTALTUNG + '\') class="button"><i class="icon fa fa-close"></i></button></td></tr>';
       }
@@ -51,8 +52,8 @@ function listFilteredVeranstaltung(arr, zustand){
     for(var i = 0; i < arr.length; i++){
       var obj = arr[i];
       if(obj.HAEUFIGKEIT_PA == 2 || obj.SOMMER == 0){
-        str += '<tr><td class="vtd" id="v'+ obj.IDVERANSTALTUNG + '">' + obj.BEZEICHNUNG
-        + '</td><td style="border: none"><button onClick=editVeranstaltung(\''
+        str += '<tr><td class="tdBezeichnung" id="v'+ obj.IDVERANSTALTUNG + '">' + obj.BEZEICHNUNG
+        + '</td><td class="tdAnteil">'+obj.ANTEIL_PROZENT+'</td><td class="tdButtons" style="border: none"><button onClick=editVeranstaltung(\''
         + obj.IDVERANSTALTUNG + '\') class="button"><i class="icon fa fa-bars"></i></button><button onClick=deleteVeranstaltung(\'' + obj.IDVERANSTALTUNG
         + '\') class="button"><i class="icon fa fa-close"></i></button></td></tr>';
       }
@@ -77,14 +78,14 @@ function listFilteredVeranstaltung(arr, zustand){
   if(zustand == 'alle'){
     for(var i = 0; i < arr.length; i++){
       var obj = arr[i];
-        str += '<tr><td class="vtd" id="v'+ obj.IDVERANSTALTUNG + '">' + obj.BEZEICHNUNG
-        + '</td><td style="border: none"><button onClick=editVeranstaltung(\''
+        str += '<tr><td class="tdBezeichnung" id="v'+ obj.IDVERANSTALTUNG + '">' + obj.BEZEICHNUNG
+        + '</td><td class="tdAnteil">'+obj.ANTEIL_PROZENT+'</td><td class="tdButtons" style="border: none"><button onClick=editVeranstaltung(\''
         + obj.IDVERANSTALTUNG + '\') class="button"><i class="icon fa fa-bars"></i></button><button onClick=deleteVeranstaltung(\'' + obj.IDVERANSTALTUNG
         + '\') class="button"><i class="icon fa fa-close"></i></button></td></tr>';
       }
   }
 
-  str += '</table>';
+  str += '</table></div>';
   zustand = "";
   return str;
 }
@@ -188,8 +189,9 @@ function saveEdit(vid){
                 console.log(this.responseText);
                 if(this.responseText == "1"){
                   hideModal();
+                  update();
                 }
-                
+
                 else{
                   document.getElementById('hinweis').style.display = 'block';
                   document.getElementById('hinweis').innerHTML = this.responseText;

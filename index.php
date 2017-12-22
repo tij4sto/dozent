@@ -10,7 +10,7 @@
     ?>
     <script type="text/javascript" src="functions.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="s.css">
+    <link rel="stylesheet" href="s0.css">
   </head>
   <body>
     <div id="profs"></div>
@@ -26,7 +26,7 @@
       </div>
       <div class="right">
         <div class="headline">
-          <h1>Veranstaltungen</h1>
+          <h1>Meine Veranstaltungen</h1>
         </div>
         <div class="tab">
           <button class="tablinks" onclick="openVList(event, 'veranstaltungen')">Alle Veranstaltungen</button>
