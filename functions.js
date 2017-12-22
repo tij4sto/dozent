@@ -24,8 +24,8 @@ function listAllVeranstaltung(arr){
   str += '<tr><th class="thBez">Bezeichnung</th><th class="thSWS">SWS</th></tr>'
   for(var i = 0; i < arr.length; i++){
     var obj = arr[i];
-    str += '<tr><td class="tdAlle" value="'+ obj.BEZEICHNUNG + '">' + obj.BEZEICHNUNG
-    + '</td><td class="tdSWS">'+obj.SWS+'</td><td class="tdPfeil" style="border: none; padding-left: 5px;"><button onClick=updateVeranstaltung(\''
+    str += '<tr><td class="tdBezeichnung" value="'+ obj.BEZEICHNUNG + '">' + obj.BEZEICHNUNG
+    + '</td><td class="tdAnteil">'+obj.SWS+'</td><td class="tdPfeil" style="border: none; padding-left: 5px;"><button onClick=updateVeranstaltung(\''
     + obj.IDVERANSTALTUNG + '\') id="'+ obj.IDVERANSTALTUNG +'" class="button"><i class="icon fa fa-arrow-right"></i></button></td></tr>';
   }
   str += '</table>';
@@ -36,7 +36,20 @@ function listAllVeranstaltung(arr){
 function listFilteredVeranstaltung(arr, zustand){
   var str = "";
   str += '<div class="veranstaltungen"><table class="vtable">';
+
+  if(zustand == 'alle'){
+    str += '<tr><th class="thBez">Bezeichnung</th><th class="thSWS">Anteil SWS</th></tr>';
+    for(var i = 0; i < arr.length; i++){
+      var obj = arr[i];
+        str += '<tr><td class="tdBezeichnung" id="v'+ obj.IDVERANSTALTUNG + '">' + obj.BEZEICHNUNG
+        + '</td><td class="tdAnteil">'+obj.ANTEIL_PROZENT+'</td><td class="tdButtons" style="border: none"><button onClick=editVeranstaltung(\''
+        + obj.IDVERANSTALTUNG + '\') class="button"><i class="icon fa fa-bars"></i></button><button onClick=deleteVeranstaltung(\'' + obj.IDVERANSTALTUNG
+        + '\') class="button"><i class="icon fa fa-close"></i></button></td></tr>';
+      }
+  }
+
   if(zustand == 'sommer'){
+    str += '<tr><th class="thBez">Bezeichnung</th><th class="thSWS">Anteil SWS</th></tr>';
     for(var i = 0; i < arr.length; i++){
       var obj = arr[i];
       if(obj.SOMMER == 1){
@@ -49,6 +62,7 @@ function listFilteredVeranstaltung(arr, zustand){
   }
 
   if(zustand == 'winter'){
+    str += '<tr><th class="thBez">Bezeichnung</th><th class="thSWS">Anteil SWS</th></tr>';
     for(var i = 0; i < arr.length; i++){
       var obj = arr[i];
       if(obj.HAEUFIGKEIT_PA == 2 || obj.SOMMER == 0){
@@ -61,6 +75,7 @@ function listFilteredVeranstaltung(arr, zustand){
   }
 
   if(zustand == 'ueberschneidungen'){
+    str += '<tr><th style="text-align: left">Veranstaltung</th><th>Lehrbeauftragter</th><th>jeweiliger Anteil</th><tr></tr>'
     var t = "null"
     for(var i = 0; i < arr.length; i++){
       var obj = arr[i];
@@ -69,20 +84,10 @@ function listFilteredVeranstaltung(arr, zustand){
           str += '<tr><td colspan="3" style="width:100%"><hr style="border: solid #44729A 2px"></td></tr>';
         }
       }
-      str += '<tr><td class="vtd" id="v'+ obj.BEZEICHNUNG + '">' + obj.BEZEICHNUNG
-      + '</td><td style="text-align: center">'+ obj.NAME +'</td><td style="text-align: right">' + obj.ANTEIL_PROZENT +'</td></tr>';
+      str += '<tr><td style="width: 50%" id="v'+ obj.BEZEICHNUNG + '">' + obj.BEZEICHNUNG
+      + '</td><td style="text-align: center width: 25%">'+ obj.NAME +'</td><td style="text-align: right width: 25%">' + obj.ANTEIL_PROZENT +'</td></tr>';
       t = obj.BEZEICHNUNG;
     }
-  }
-
-  if(zustand == 'alle'){
-    for(var i = 0; i < arr.length; i++){
-      var obj = arr[i];
-        str += '<tr><td class="tdBezeichnung" id="v'+ obj.IDVERANSTALTUNG + '">' + obj.BEZEICHNUNG
-        + '</td><td class="tdAnteil">'+obj.ANTEIL_PROZENT+'</td><td class="tdButtons" style="border: none"><button onClick=editVeranstaltung(\''
-        + obj.IDVERANSTALTUNG + '\') class="button"><i class="icon fa fa-bars"></i></button><button onClick=deleteVeranstaltung(\'' + obj.IDVERANSTALTUNG
-        + '\') class="button"><i class="icon fa fa-close"></i></button></td></tr>';
-      }
   }
 
   str += '</table></div>';

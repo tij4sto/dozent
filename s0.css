@@ -73,16 +73,17 @@ body{
 
 .tdAnteil{
   text-align: center;
-  background-color: #b7e1d1;
+  background-color: #dce6ef;
 }
 
 .tdBezeichnung{
   text-align: left;
-  background-color: #a6c1d8
+  background-color: #eef3f7;
+  min-width: 450px;
 }
 
 .tdButtons{
-  text-align: right;
+  text-align: left;
 }
 
 .tdPfeil{
@@ -91,16 +92,15 @@ body{
 
 .thBez{
   text-align: left;
-  width: 50%;
-  background-color: #b7e1d1;
-  color: black;
+  background-color: #44729a;
+  color: white;
 }
 
 .thSWS{
-  text-align: left;
+  text-align: center;
   width: 5px;
-  background-color: #b7e1d1;
-  color: black;
+  background-color: #44729a;
+  color: white;
 }
 
 .tdSWS{
