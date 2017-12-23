@@ -17,7 +17,7 @@
     <div id="wrapper">
       <div class="left">
         <div class="headline">
-          <h1>Veranstaltungen</h1>
+          <h1>Alle Veranstaltungen</h1>
         </div>
         <div class="tab">
           <input id="vsuche" value="" onkeyup="updateAlleVeranstaltungen(value)" type="text" name="suche" placeholder="Suche..">
