@@ -8,7 +8,7 @@ function getAllDozenten(arr){
 //Sendet alle Dozenten als HTML Select Feld zurück und ruft update() auf, wenn sich der Professor ändert.
 function listAllDozent(arr){
   var str = "";
-  str += '<label>Dozent(in):</br></label><select onChange="update()" id="selectDozent" class="profselect" name="top5"><option selected disabled hidden>Prof auswählen</option>';
+  str += '<label>Dozent(in):</br></label><select onChange="update()" id="selectDozent" class="profselect" name="top5"><option selected disabled hidden>Dozent auswählen</option>';
   for(var i = 0; i < arr.length; i++){
     var obj = arr[i];
     str += '<option class="profoption" value="'+ obj.IDDOZENT + '">' + obj.NAME + '</option>';
@@ -36,6 +36,11 @@ function listAllVeranstaltung(arr){
 function listFilteredVeranstaltung(arr, zustand){
   var str = "";
   str += '<div class="veranstaltungen"><table class="vtable">';
+
+  if(arr.length == undefined){
+    str = '<div id="keineV">Keine Veranstaltungen eingetragen</div>';
+    return str;
+  }
 
   if(zustand == 'alle'){
     str += '<tr><th class="thBez">Bezeichnung</th><th class="thSWS">Anteil SWS</th></tr>';
@@ -84,8 +89,8 @@ function listFilteredVeranstaltung(arr, zustand){
           str += '<tr><td colspan="3" style="width:100%"><hr style="border: solid #44729A 2px"></td></tr>';
         }
       }
-      str += '<tr><td style="width: 50%" id="v'+ obj.BEZEICHNUNG + '">' + obj.BEZEICHNUNG
-      + '</td><td style="text-align: center width: 25%">'+ obj.NAME +'</td><td style="text-align: right width: 25%">' + obj.ANTEIL_PROZENT +'</td></tr>';
+      str += '<tr><td class="tdUEl" style="width: 50%" id="v'+ obj.BEZEICHNUNG + '">' + obj.BEZEICHNUNG
+      + '</td><td class="tdUEc" style="text-align: center width: 25%">'+ obj.NAME +'</td><td class="tdUEr" style="text-align: right width: 25%">' + obj.ANTEIL_PROZENT +'</td></tr>';
       t = obj.BEZEICHNUNG;
     }
   }

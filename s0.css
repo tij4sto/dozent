@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Nunito');
-@import url('https://fonts.googleapis.com/css?family=Quicksand');
+@import url('https://fonts.googleapis.com/css?family=Questrial');
 
 body{
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Questrial', sans-serif;
   height: 100%;
 }
 
@@ -109,6 +109,18 @@ body{
   background-color: #a6c1d8
 }
 
+.tdUEl{
+  text-align: left;
+}
+
+.tdUEc{
+  text-align: center;
+}
+
+.tdUEr{
+  text-align: center;
+}
+
 .button {
    background-color: rgba(0, 0, 0, 0.0);
    border: none;
@@ -173,12 +185,9 @@ div.tab button.active {
   min-height: 50px;
   box-sizing: border-box;
   border: 2px solid #ccc;
-  border-radius: 4px;
-  font-size: 16px;
+  border-radius: 1px;
+  font-size: 17px;
   background-color: white;
-  background-image: url('searchicon.png');
-  background-position: 10px 10px;
-  background-repeat: no-repeat;
   padding: 5px;
   -webkit-transition: width 0.4s ease-in-out;
   transition: width 0.4s ease-in-out;
@@ -186,7 +195,31 @@ div.tab button.active {
 
 /* When the input field gets focus, change its width to 100% */
 #vsuche[type=text]:focus {
-    width: 50%;
+    width: 62.5%;
+
+}
+
+#vsuche:focus{
+  border: 2px solid #44729A;
+  outline: none;
+}
+
+#searchblock{
+  width: 50px;
+  height: 50px;
+  padding: 0px;
+  margin: 0px;
+  background-image: url('search.png');
+  background-size: 40px;
+  background-position: 7px 7px;
+  background-repeat: no-repeat;
+  background-color: #ccc;
+  float: left;
+
+}
+
+#vsuche:focus ~ #searchblock {
+  background-color: #44729A;
 }
 
 /* The Modal (background) */
@@ -203,19 +236,27 @@ div.tab button.active {
     background-color: rgba(113,156,193,0.8); /* Black w/ opacity */
 }
 
+/* Hinweis erscheint, wenn ein Professor eine Veranstaltung bearbeitet und ein Fehler dabei auftritt */
+
 #hinweis{
   display: none;
   font-weight: 12px;
   color: red;
 }
 
+/* Div  wird angezeit, wenn keine Veranstaltungen für einen Professor angezeigt werden können */
+
+#keineV{
+  margin: 20px 0px 0px 20px;
+}
+
 /* Modal Content/Box */
 .modal-content {
     background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
+    margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 20%; /* Could be more or less, depending on screen size */
+    width: 20%;
 }
 
 .modal-btn {
@@ -230,7 +271,6 @@ div.tab button.active {
   width: 80%;
 }
 
-/* The Close Button */
 .close {
     color: #aaa;
     float: right;

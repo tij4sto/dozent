@@ -19,8 +19,9 @@
         <div class="headline">
           <h1>Alle Veranstaltungen</h1>
         </div>
-        <div class="tab">
+        <div id="suche" class="tab">
           <input id="vsuche" value="" onkeyup="updateAlleVeranstaltungen(value)" type="text" name="suche" placeholder="Suche..">
+          <div id="searchblock"></div>
         </div>
         <div id="alleVeranstaltungen"></div>
       </div>
